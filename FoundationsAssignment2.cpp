@@ -2,9 +2,7 @@
 // Zubair Islam
 // Huzaifa Zia
 // Hanzalah Patel
-//Test
 
-// Deez nuts
 #include <iostream>
 #include <math.h>
 #include <string>
@@ -16,45 +14,64 @@ using namespace std;
 char encrypt(int x, char input[]);
 char decrypt(int x, char input[]);
 
-
 int main()
 {
-int x;
 	char userInput[100];
 	int numberSelection;
-	string test;
+	char run = 'C';
+	char s[100];
+	string input;
 
-	//Ask for input and get input
-	cout << "Welcome to Cryptographic Techniques Program" << endl;
-	cout << "Enter your input: ";
-	cin >> userInput;
-	cout << endl;
-
-	//Ask user what they want to do
-	cout << "Select what you would like to do to your input. " << endl;
-	cout << "1. Encrypt" << endl;
-	cout << "2. Decrypt" << endl;
-	cout << "Enter 1 or 2: ";
-	cin >> numberSelection;
-
-	//if encrypt is selected, it will then ask what cipher they want to use
-	if (numberSelection == 1)
+	while (run = 'C')
 	{
+		//Ask for input and get input
+		cout << "Welcome to Cryptographic Techniques Program" << endl;
+		cout << "Enter your input: ";
+		cin >> userInput;
 		cout << endl;
-		cout << "Encrypt: " << endl;
 
-		//call function
-		encrypt(numberSelection, userInput);
-	}
+		//Ask user what they want to do
+		cout << "Select what you would like to do to your input. " << endl;
+		cout << "1. Encrypt" << endl;
+		cout << "2. Decrypt" << endl;
+		cout << "Enter 1 or 2: ";
+		cin >> numberSelection;
 
-	//if decrypt is selected, it will then ask what cipher they want to use
-	else if (numberSelection == 2)
-	{
+		//if encrypt is selected, it will then ask what cipher they want to use
+		if (numberSelection == 1)
+		{
+			cout << endl;
+			cout << "Encrypt: " << endl;
+
+			//call function
+			encrypt(numberSelection, userInput);
+		}
+
+		//if decrypt is selected, it will then ask what cipher they want to use
+		else if (numberSelection == 2)
+		{
+			cout << endl;
+			cout << "Decrypt: " << endl;
+
+			//call function
+			decrypt(numberSelection, userInput);
+		}
 		cout << endl;
-		cout << "Decrypt: " << endl;
+		cout << "To continue with encrypting/decrypting enter C, else to exit enter E" << endl; // Prompt user to exit or re run
+		cin >> run;
+		run = toupper(run);
 
-		//call function
-		decrypt(numberSelection, userInput);
+		while (run != 'E' && run != 'C') // Error check for input value, must be only E or C
+		{
+			cout << "To continue with encrypting/decrypting enter C, else to exit enter E" << endl;
+			cin >> run;
+			run = toupper(run);
+		}
+
+		if (run == 'E') // If E is entered then exit the program
+		{
+			exit(2);
+		}
 	}
 }
 
@@ -67,6 +84,12 @@ char encrypt(int x, char input[])
 	cout << "2. Vigenere cipher" << endl;
 	cout << "Enter 1 or 2: ";
 	cin >> x;
+
+	while (x != 1 && x != 2)
+	{
+		cout << "Enter either 1 for Ceaser Cipher or 2 for Vigenere Cipher" << endl;
+		cin >> x;
+	}
 
 	if (x == 1)
 	{
