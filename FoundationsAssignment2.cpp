@@ -4,7 +4,7 @@
 // Hanzalah Patel
 //Test
 
-
+// Deez nuts
 #include <iostream>
 #include <math.h>
 #include <string>
@@ -16,9 +16,10 @@ using namespace std;
 char encrypt(int x, char input[]);
 char decrypt(int x, char input[]);
 
+
 int main()
 {
-
+int x;
 	char userInput[100];
 	int numberSelection;
 	string test;
