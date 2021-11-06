@@ -11,7 +11,7 @@
 
 using namespace std;
 
-char encrypt(int x, char input[]);
+void encrypt(int x, char input[], int inputsize);
 char decrypt(int x, char input[]);
 
 int main()
@@ -21,14 +21,17 @@ int main()
 	char run = 'C';
 	char s[100];
 	string input;
+	int inputSize;
 
 	while (run = 'C')
 	{
 		//Ask for input and get input
 		cout << "Welcome to Cryptographic Techniques Program" << endl;
 		cout << "Enter your input: ";
-		cin >> userInput;
+		cin.ignore();
+		cin.getline(userInput, sizeof(userInput));
 		cout << endl;
+		inputSize = sizeof(userInput);
 
 		//Ask user what they want to do
 		cout << "Select what you would like to do to your input. " << endl;
@@ -44,7 +47,7 @@ int main()
 			cout << "Encrypt: " << endl;
 
 			//call function
-			encrypt(numberSelection, userInput);
+			encrypt(numberSelection, userInput, inputSize);
 		}
 
 		//if decrypt is selected, it will then ask what cipher they want to use
@@ -75,9 +78,9 @@ int main()
 	}
 }
 
-char encrypt(int x, char input[])
+void encrypt(int x, char input[], int inputsize)
 {
-	char newLetter;
+	char newLetter[100];
 
 	cout << "Which cipher would you like to use? " << endl;
 	cout << "1. Caesar cipher" << endl;
@@ -98,33 +101,43 @@ char encrypt(int x, char input[])
 		// ONLY PRINTS 4 LETTERS, NEED TO CHANGE THE i< sizeof(input) to something else
 		//SO IT LOOPS AS LONG AS INPUT
 
-		for (int i = 0; i < sizeof(input); i++)
+		for (int i = 0; i <= inputsize; i++)
 		{
-
-			// Caesar encryption algorithm which works perfectly
-			newLetter = (input[i] - '0' + 7) % 75 + '0';
-			cout << newLetter;
+			if (input[i] != ' ')
+			{
+				// Caesar encryption algorithm which works perfectly
+				newLetter[i] = (input[i] - '0' + 7) % 75 + '0';
+				// cout << newLetter;
+			}
+			else
+			{
+				newLetter[i] = ' ';
+				//cout << newLetter;
+			}
 		}
 	}
 	else if (x == 2)
 	{
 		cout << "You have selected Vigenere cipher" << endl;
 
-		for (int i = 0; i < sizeof(input); i++)
+		for (int i = 0; i <= inputsize; i++)
 		{
 
 			// Vigenere encryption cipher formula but needs to be fixed
 			//  This works but it is not the way its supposed to be in the algorithm
 			// that is provided in assignment;  E = (C + k) % 26
 
-			newLetter = (input[i] + 8) % 26;
-			newLetter += 'a';
+			newLetter[i] = (input[i] + 8) % 26;
+			newLetter[i] += 'a';
 
-			cout << newLetter;
+			//cout << newLetter;
 		}
 	}
 
-	return x;
+	for (int i = 0; i < inputsize; i++)
+	{
+		cout << newLetter[i];
+	}
 }
 
 // NEED TO FILL IN CODE FOR DECRYPT
