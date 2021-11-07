@@ -26,7 +26,7 @@ int main()
     //variable to store input for selections
     int numberSelection;
 
-    char run = 'C';
+    char run = 'C';// stores info about wether program should run again or not
 
     //variable to store length of user input
     int inputSize;
@@ -42,7 +42,7 @@ int main()
         //Ask user for input to encrypt/decrypt
         cout << "Enter your input: ";
        
-        cin >> ws;
+        cin >> ws;// Removes all white space from input 
 
         //get input
         cin.getline(userInput, sizeof(userInput));
