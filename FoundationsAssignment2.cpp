@@ -12,10 +12,8 @@
 
 using namespace std;
 
-//encryption function
+//function prototype
 void encrypt(int x, char input[], int inputsize);
-
-//decryption function
 void decrypt(int x, char input[], int inputsize);
 
 int main()
@@ -109,6 +107,7 @@ int main()
         {
             exit(2);
         }
+        cout << endl;
     }
 }
 
