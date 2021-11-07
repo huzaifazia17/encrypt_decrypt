@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <sstream>
 #include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -24,16 +25,22 @@ int main()
     string input;
     int inputSize;
 
+    
+
     while (run)
     {
+
         //Ask for input and get input
         cout << "Welcome to Cryptographic Techniques Program" << endl;
         cout << "Enter your input: ";
-        cin.ignore(cin.rdbuf()->in_avail(), '\n');
+        cin >> ws;
         cin.getline(userInput, sizeof(userInput));
-
+        
+        
         cout << endl;
         inputSize = strlen(userInput);
+        
+
 
         //Ask user what they want to do
         cout << "Select what you would like to do to your input. " << endl;
@@ -42,7 +49,7 @@ int main()
         cout << "Enter 1 or 2: ";
         cin >> numberSelection;
 
-        while (numberSelection != 1 && numberSelection != 2) {
+        while(numberSelection !=1 && numberSelection !=2){
             cout << "Enter either 1 or 2: ";
             cin >> numberSelection;
         }
@@ -66,7 +73,6 @@ int main()
             decrypt(numberSelection, userInput, inputSize);
         }
 
-       
         cout << endl;
         cout << "To continue with encrypting/decrypting enter C, else to exit enter E" << endl; // Prompt user to exit or re run
         cin >> run;
@@ -107,7 +113,7 @@ void encrypt(int x, char input[], int inputsize)
     if (x == 1)
     {
         cout << "You have selected Caesar cipher" << endl;
-
+        
         for (int i = 0; i < inputsize; i++)
         {
             if (input[i] != ' ')
@@ -139,7 +145,7 @@ void encrypt(int x, char input[], int inputsize)
             {
 
                 newLetter = (input[i] + 8) % 26;
-                newLetter += (key - 1);
+                newLetter += (key-1);
 
                 cout << newLetter;
             }
@@ -178,19 +184,19 @@ void decrypt(int x, char input[], int inputsize)
         cout << "You have selected Caesar cipher" << endl;
 
         for (int i = 0; i < inputsize; i++)
-        {
-            if (input[i] != ' ')
             {
-                input[i] = tolower(input[i]);
-                newLetter = (input[i] - 'a' - 7 + 26) % 26 + 'a';
-                cout << newLetter;
+                if (input[i] != ' ')
+                {
+                    input[i] = tolower(input[i]);
+                    newLetter = (input[i] - 'a' - 7 +26) % 26 + 'a';
+                    cout << newLetter;
+                }
+                else if (input[i] == ' ')
+                {
+                    newLetter = ' ';
+                    cout << newLetter;
+                }
             }
-            else if (input[i] == ' ')
-            {
-                newLetter = ' ';
-                cout << newLetter;
-            }
-        }
     }
     else if (x == 2)
     {
@@ -206,7 +212,7 @@ void decrypt(int x, char input[], int inputsize)
             if (input[i] != ' ')
             {
                 input[i] = tolower(input[i]);
-                newLetter = (input[i] - (key)+26) % 26 + 'a';
+                newLetter = (input[i] - (key) + 26) % 26 + 'a';
                 //newLetter += (key-1);
 
                 cout << newLetter;
